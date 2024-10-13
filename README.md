@@ -253,3 +253,159 @@ t.test(): This is a function of t-test that will show the comparison of mean val
 growth_10_year ~ Site : This model that you want to test the differences in growth_10_year between the groups defined by the Site variable.
 data = csv_columns: This argument identifies the data frame containing the variables of interest.
 print(t_test_result): This line outputs the results of the t-test, which includes statistics such as the t-value, degrees of freedom, p-value, and confidence interval for the mean difference.
+
+
+
+
+#Part 2
+Question 1
+
+# Intsalling seqinr
+```{r}
+install.packages("seqinr")
+```
+```{r}
+library(seqinr)
+```
+The code reads an uncompressed FASTA file named ecoli_cds.fa.gz, which contains coding sequences for Escherichia coli, using the read.fa function from the seqinr  package.
+
+# Downloading the gene e-coli
+```{r}
+library("R.utils")
+URL="https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-59/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655_gca_000005845/cds/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.cds.all.fa.gz"
+download.file(URL,destfile="ecoli_cds.fa.gz")
+gunzip("ecoli_cds.fa.gz")
+list.files()
+```
+Library (“R.utils”) this code loads the R.utils package, which provides ability to decompress files. Then it defines the URL where the compressed FASTA file is hosted.the command download.file(URL,destfile="ecoli_cds.fa.gz") downloads the file from the specified URL  and saved it with the name ecoli_cds.fa.gz. the command  gunzip("ecoli_cds.fa.gz") decompresses the downloaded gunzipped file. Finally, list.files() lists the files in the current working directory, confirming that the FASTA file is downloaded.
+
+# Downloading the gene of interest
+```{r}
+library("R.utils")
+URL="https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-59/fasta/bacteria_0_collection/deinococcus_radiodurans_r1_gca_000008565/cds/Deinococcus_radiodurans_r1_gca_000008565.ASM856v1.cds.all.fa.gz"
+download.file(URL,destfile="deinococcus_radiodurans_cds.fa.gz")
+gunzip("deinococcus_radiodurans_cds.fa.gz")
+list.files()
+```
+Library (“R.utils”) this code loads the R.utils package, which provides ability to decompress files. Then it defines the URL where the compressed FASTA file is hosted.the command download.file(URL,destfile="deinococcus_radiodurans_cds.fa.gz") downloads the file from the specified URL  and saved it with the name radiodurans_cds.fa.gz. the command  gunzip("deinococcus_radiodurans_cds.fa.gz") decompresses the downloaded gunzipped file. Finally, list.files() lists the files in the current working directory, confirming that the FASTA file is downloaded.
+
+# Loading the sequence for both organisms
+```{r}
+cds <- seqinr::read.fasta("deinococcus_radiodurans_cds.fa")
+ecoli_cds <- seqinr::read.fasta("ecoli_cds.fa")
+```
+This code is used for load sequences for both Deinococcus radiodurans and Escherichia coli into R
+
+# Counting the codes for ecoli
+```{r}
+ecoli_count <- length(ecoli_cds)
+```
+This code is used to determine how many sequences are stored in ecoli_cds.
+
+# Counting the codes for deinococcus and Read the FASTA file for Deinococcus radiodurans
+```{r}
+deinococcus_cds <- seqinr::read.fasta("deinococcus_radiodurans_cds.fa")
+```
+This code is used to read and load the coding sequence data for the Deinococcu radiodurans into R.
+
+```{r}
+deinococcus_count <- length(deinococcus_cds)
+```
+This code is used to determine how many sequences are stored in Deinococcu radiodurans. 
+
+# Print the count for Deinococcus radiodurans
+```{r}
+print(paste("Number of coding sequences in Deinococcus radiodurans:", deinococcus_count)
+```
+The code is used to display the count of coding sequence for Deinococcus radiodurans and make sure to earlier used code work properly.
+
+# Creating a summary table
+```{r}
+coding_sequences_table <- data.frame(
+  Organism = c("E. coli", "Deinococcus radiodurans"),
+  Number_of_Coding_Sequences = c(ecoli_count, deinococcus_count)
+)
+```
+intsalling seqinr
+```{r}
+install.packages("seqinr")
+```
+```{r}
+library(seqinr)
+```
+The code reads an uncompressed FASTA file named ecoli_cds.fa.gz, which contains coding sequences for Escherichia coli, using the read.fa function from the seqinr  package.
+
+# Downloading the gene e-coli
+```{r}
+library("R.utils")
+URL="https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-59/fasta/bacteria_0_collection/escherichia_coli_str_k_12_substr_mg1655_gca_000005845/cds/Escherichia_coli_str_k_12_substr_mg1655_gca_000005845.ASM584v2.cds.all.fa.gz"
+download.file(URL,destfile="ecoli_cds.fa.gz")
+gunzip("ecoli_cds.fa.gz")
+list.files()
+```
+Library (“R.utils”) this code loads the R.utils package, which provides ability to decompress files. Then it defines the URL where the compressed FASTA file is hosted.the command download.file(URL,destfile="ecoli_cds.fa.gz") downloads the file from the specified URL  and saved it with the name ecoli_cds.fa.gz. the command  gunzip("ecoli_cds.fa.gz") decompresses the downloaded gunzipped file. Finally, list.files() lists the files in the current working directory, confirming that the FASTA file is downloaded.
+
+# Downloading the gene of interest
+```{r}
+library("R.utils")
+URL="https://ftp.ensemblgenomes.ebi.ac.uk/pub/bacteria/release-59/fasta/bacteria_0_collection/deinococcus_radiodurans_r1_gca_000008565/cds/Deinococcus_radiodurans_r1_gca_000008565.ASM856v1.cds.all.fa.gz"
+download.file(URL,destfile="deinococcus_radiodurans_cds.fa.gz")
+gunzip("deinococcus_radiodurans_cds.fa.gz")
+list.files()
+```
+Library (“R.utils”) this code loads the R.utils package, which provides ability to decompress files. Then it defines the URL where the compressed FASTA file is hosted.the command download.file(URL,destfile="deinococcus_radiodurans_cds.fa.gz") downloads the file from the specified URL  and saved it with the name radiodurans_cds.fa.gz. the command  gunzip("deinococcus_radiodurans_cds.fa.gz") decompresses the downloaded gunzipped file. Finally, list.files() lists the files in the current working directory, confirming that the FASTA file is downloaded.
+
+# Loading the sequence for both organisms
+```{r}
+cds <- seqinr::read.fasta("deinococcus_radiodurans_cds.fa")
+ecoli_cds <- seqinr::read.fasta("ecoli_cds.fa")
+```
+This code is used for load sequences for both Deinococcus radiodurans and Escherichia coli into R
+
+# Counting the codes for ecoli
+```{r}
+ecoli_count <- length(ecoli_cds)
+```
+This code is used to determine how many sequences are stored in ecoli_cds.
+
+# Counting the codes for deinococcus and Read the FASTA file for Deinococcus radiodurans
+```{r}
+deinococcus_cds <- seqinr::read.fasta("deinococcus_radiodurans_cds.fa")
+```
+This code is used to read and load the coding sequence data for the Deinococcu radiodurans into R.
+
+```{r}
+deinococcus_count <- length(deinococcus_cds)
+```
+This code is used to determine how many sequences are stored in Deinococcu radiodurans. 
+
+# Print the count for Deinococcus radiodurans
+```{r}
+print(paste("Number of coding sequences in Deinococcus radiodurans:", deinococcus_count)
+```
+The code is used to display the count of coding sequence for Deinococcus radiodurans and make sure to earlier used code work properly.
+
+# Creating a summary table
+```{r}
+coding_sequences_table <- data.frame(
+  Organism = c("E. coli", "Deinococcus radiodurans"),
+  Number_of_Coding_Sequences = c(ecoli_count, deinococcus_count)
+)
+```
+This code used to summarize the number of coding sequences for both organisms Escherichia coli and Deinococcus radiodurans. This code organizes the data into table format.
+
+# Printing the table
+
+```{r}
+print(coding_sequences_table)
+```
+We used this command to print the contents of the data.
+
+
+
+
+
+ 
+
+
+
