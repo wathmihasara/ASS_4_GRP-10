@@ -118,6 +118,7 @@ subset(): It generates a new data frame, north/south, containing only the rows w
 select = c("Circumf_2005_cm", argument Circumf_2020_cm: This argument selects the column that will remain in the new data frame; here, it selects columns corresponding to girth measurements for 2005 and 2020.
 colMeans(): A function that calculates the mean of numeric columns in north data frame.
 This will output a named numeric vector showing the mean circumference for Circumf_2005_cm and Circumf_2020_cm.
+
 circumference mean of southwest.
 •	Circumf_2005_cm = 4.862 
 
