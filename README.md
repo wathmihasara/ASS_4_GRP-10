@@ -83,6 +83,18 @@ top_genes[, 1:5]: Shows the first 5 columns of `top genes`
 top_genes[, c(1, 5)]: Extracts only the first and fifth column
 Data_set <- top_genes[, c(1, 5)]: Extracts Gene ID and mean expression column
 
+# Histogram
+```{r}
+Data_set<-top_genes[,c(1,5)]
+hist(Data_set$mean_expression,xlab="Mean Expression",ylab="Frequency",main="histogram plot of the mean
+```
+Data_set <- top_genes[, c(1, 5)]: This line creates a new data frame, Data_set, comprising only two columns, namely Gene_ID and mean_expression columns.
+hist(): Plots histogram of the values in the mean_expression column
+xlab: x-axis was named.
+ylab: y-axis was named.
+main: The plot was titled.
+col: The bars are color-filled in light blue.
+border: Bars are outlined in black borders.
 
 
 
