@@ -119,7 +119,9 @@ colMeans(south)
 south
 ```
 This command will show the entire data frame stored in the variable csv_columns and can inspect the data, including the columns that contain tree circumference measurements.
+
 #mean
+
 subset(): It generates a new data frame, north/south, containing only the rows whose value in the column Site is "northeast” or “Southeast."
 select = c("Circumf_2005_cm", argument Circumf_2020_cm: This argument selects the column that will remain in the new data frame; here, it selects columns corresponding to girth measurements for 2005 and 2020.
 colMeans(): A function that calculates the mean of numeric columns in north data frame.
@@ -137,6 +139,32 @@ Circumference mean of northeast.
 
 •	Circumf_2020_cm = 54.228
 
+#Standard deviation
+
+sd(): This function computes the standard deviation of values in the column specified.
+south[, 1]: This actually is the notation for accessing the first column of the dataframe south. Let's assume this column contains the measurements of the circumference of trees for one particular year, say 2005.
+south[, 2]: Likewise, the following line will compute the standard deviation of the second column in the south data frame-which one can guess contains the tree circumference measurements for another year, say 2020.
+
+Standard deviation values of south west
+[1] 1.147471
+[1] 17.87345
+
+Standard deviation values of northeast
+[1] 0.9140267
+[1] 25.22795
+
+#Boxplot
+boxplot(): This function generates the boxplot.
+
+
+Northeast
+    Circumf_2010_cm      	Circumf_2015_cm     	Circumf_2020_cm
+11.288                         	24.516                                   	54.228
+
+
+Southwest
+    Circumf_2010_cm      	Circumf_2015_cm     	Circumf_2020_cm
+           10.106          	21.316          	45.596
 
 
 
