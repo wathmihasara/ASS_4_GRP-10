@@ -803,3 +803,10 @@ ggplot(summary_usage, aes(x = codon, y = freq_usage)) +
   labs(title = "Total Codon Frequency", x = "Codon", y = "Frequency") +
   theme_minimal()
 ```
+# visualization of the output of RSCU values
+```{r}
+ggplot(summary_rscu, aes(x = codon, y = RSCU_usage)) +
+  geom_bar(stat = "identity", fill = "salmon") +
+  labs(title = "Total RSCU Values", x = "Codon", y = "RSCU") +
+  theme_minimal()
+```
