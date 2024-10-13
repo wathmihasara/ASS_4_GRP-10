@@ -45,4 +45,19 @@ na.rm = TRUE:  ensures that any missing values (NA) are ignored in the calculati
 gene_data$mean_expression <- ... : It calculates the mean expression for each gene and stores it in a new column called mean_expression in the gene_data data frame.
 head(gene_data) : Display the first six rows of the updated dataframe which should include the new column mean_expression.
 
-question 3
+Question 3
+
+# listing the genes with highest mean expression
+```{r}
+top_genes <- head(gene_data[order(-gene_data$mean_expression), ], 10)
+top_genes
+```
+order() : returns the indices which would sort a vector in ascending fashion.
+The use of the- before gene_data$mean_expression sorts the numbers in a descending fashion - this means from highest to lowest mean expression.
+gene_data[order(-gene_data$mean_expression), ] : This reordered the rows of gene_data according to the sorted mean expression values so genes with highest mean are at top.
+head() : It selects the first 10 rows of the reordered data frame i.e., the 10 genes having highest mean expression.
+top_genes <-. : These 10 selected genes are stored in the data frame top_genes for further inspection.
+top_genes : It prints the top 10 genes along with their expression values and mean expression.
+
+
+
