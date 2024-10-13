@@ -238,7 +238,7 @@ select = c("Circumf_2005_cm", argument Circumf_2020_cm: This argument selects th
 colMeans(): A function that calculates the mean of numeric columns in north data frame.
 This will output a named numeric vector showing the mean circumference for Circumf_2005_cm and Circumf_2020_cm.
 
-Qustion 10
+Question 10
 
 #Use the t.test to estimate the p-value that the 10 year growth is different at the two sites.
 
@@ -469,6 +469,90 @@ print(coding_dna_comparison)
 ```
 This code is used to present the result of the earlier comparison, providing clear and informative information regarding which organism has more total sequence or their lengths are equal.
 
+Question 3
+
+# Loading the libraries
+```{r}
+library(seqinr)
+library(ggplot2)
+```
+The code reads an uncompressed FASTA file named ecoli_cds.fa.gz, which contains coding sequences for Escherichia coli, using the read.fa function from the seqinr  package.
+
+# Merging the lengths to plot the box plot
+```{r}
+length_data <- data.frame(
+  Length = c(ecoli_lengths, deinococcus_lengths),
+  Organism = c(rep("E. coli", length(ecoli_lengths)), rep("Deinococcus radiodurans", length(deinococcus_lengths)))
+)
+```
+This code creates a data that merges the lengths of coding sequences for both organisms, making it suitable for generating box plots to visually compare the distribution of sequence lengths between E. coli and Deinococcus radiodurans.
+
+# The box plot
+```{r}
+ggplot(length_data, aes(x = Organism, y = Length)) +
+  geom_boxplot() +
+  labs(title = "Length Analysis of Coding Sequences", x = "Species", y = "Sequence Length (nucleotides)") +
+  theme_minimal()
+```
+This code used to generate a box plot that visually compares the lengths of coding sequences between E. coli and Deinococcus radiodurans.
+
+# Calculating the mean and medien lengths
+```{r}
+ecoli_mean <- mean(ecoli_lengths)
+ecoli_median <- median(ecoli_lengths)
+deinococcus_mean <- mean(deinococcus_lengths)
+deinococcus_median <- median(deinococcus_lengths)
+
+```
+This code calculates and stores both the mean and median lengths of coding sequences for E. coli and Deinococcus radiodurans, providing measures that summarize the distribution of sequence lengths for each organism.
+
+# Summary of mean and medien
+```{r}
+summary_length_table <- data.frame(
+  Organism = c("E. coli", "Deinococcus radiodurans"),
+  Mean_Length = c(ecoli_mean, deinococcus_mean),
+  Median_Length = c(ecoli_median, deinococcus_median)
+)
+```
+This code prepares a summary data that mean and median lengths for the coding sequences of E. coli and Deinococcus radiodurans, facilitating straightforward comparison and analysis of their coding sequence characteristics.
+
+# Table
+```{r}
+print(summary_length_table)
+```
+This code is used to print the summary table, allowing to easily view and compare the mean and median lengths of coding sequences for the both organisms.
+
+# Describing the differances of mean
+```{r}
+mean_diff <- if (ecoli_mean > deinococcus_mean) {
+  "E. coli has a longer mean coding sequence length."
+} else if (ecoli_mean < deinococcus_mean) {
+  "Deinococcus radiodurans has a longer mean coding sequence length."
+} else {
+  "Both organisms have the same mean coding sequence length."
+}
+```
+This code used to generate a comparison statement about the mean coding sequence lengths of the two organisms, allowing for a clear interpretation of which organism has a longer mean length or if they are equal
+
+# Describing the medien differance 
+```{r}
+median_diff <- if (ecoli_median > deinococcus_median) {
+  "E. coli has a longer median coding sequence length."
+} else if (ecoli_median < deinococcus_median) {
+  "Deinococcus radiodurans has a longer median coding sequence length."
+} else {
+  "Both organisms have the same median coding sequence length."
+}
+```
+This code used to generate a comparison statement regarding the median coding sequence lengths of the two organisms. It provides a clear interpretation of which organism has a longer median length or if they are equal.
+
+# Data (final)
+```{r}
+print(mean_diff)
+print(median_diff)
+```
+
+These codes used to print the results of the comparisons for both the mean and median coding sequence lengths, allowing to easily view and interpret the findings regarding the differences between the two organisms
 
 
  
