@@ -169,7 +169,7 @@ select = c("Circumf_2005_cm", argument Circumf_2020_cm: This argument selects th
 colMeans(): A function that calculates the mean of numeric columns in north data frame.
 This will output a named numeric vector showing the mean circumference for Circumf_2005_cm and Circumf_2020_cm.
 
-#Standard deviation
+# Standard deviation
 
 #sd
 ```{r}
@@ -188,7 +188,7 @@ south[, 1]: This actually is the notation for accessing the first column of the 
 south[, 2]: Likewise, the following line will compute the standard deviation of the second column in the south data frame-which one can guess contains the tree circumference measurements for another year, say 2020.
 
 
-#Boxplot
+# Boxplot
 
 ```{r}
 boxplot(north[,1],north[,2],ylab="tree circumference",names = c("Circumf_2005_cm","Circumf_2020_cm"))
@@ -204,7 +204,7 @@ boxplot(): This function generates the boxplots for both southwest and northeast
 
 Question 9 
 
-#Calculate the mean growth over the last 10 years at each site
+# Calculate the mean growth over the last 10 years at each site
 
 ```{r}
 north2 <- subset(csv_columns,Site==("northeast"))
@@ -239,7 +239,7 @@ This will output a named numeric vector showing the mean circumference for Circu
 
 Question 10
 
-#Use the t.test to estimate the p-value that the 10 year growth is different at the two sites.
+# Use the t.test to estimate the p-value that the 10 year growth is different at the two sites.
 
 ```{r}
 csv_columns$growth_10_year <- csv_columns$Circumf_2020_cm - csv_columns$Circumf_2010_cm
