@@ -553,8 +553,253 @@ print(median_diff)
 
 These codes used to print the results of the comparisons for both the mean and median coding sequence lengths, allowing to easily view and interpret the findings regarding the differences between the two organisms
 
+# Question 4
 
- 
+# bar plot for ecoli
+
+```{r}
+install.packages("ggplot2")
+```
+This code is used to download the ggplot2 
+
+# loading the libraries
+
+```{r}
+library(seqinr)
+library(ggplot2)
+
+```
+The above code was used to load the installed packages seqinr and ggplot2.
+
+# reading the fasta files
+```{r}
+ecoli_cds <- seqinr::read.fasta("ecoli_cds.fa")
+deinococcus_cds <- seqinr::read.fasta("deinococcus_radiodurans_cds.fa")
+```
+This code is used to read and load the coding sequence data for both Escherichia coli and Deinococcu radiodurans Fasta files.
+
+# Calculating the nucleotide frequency
+
+```{r}
+nucleotide_frequency <- function(cds) {
+  dna <- unlist(cds)
+  all_sequences <- paste(dna, collapse = "")
+  base_frequency <- table(strsplit(all_sequences, split = "")[[1]])
+  return(as.data.frame(base_frequency))
+}
+
+```
+This code is used to calculate  the frequency of nucleotide bases in a set of coding sequences.
+
+
+# Calculating the nucleotide frequencies
+
+```{r}
+ecoli_nucleotide_freq <- nucleotide_frequency(ecoli_cds)
+deinococcus_nucleotide_freq <- nucleotide_frequency(deinococcus_cds)
+
+```
+
+These codes are used to calculate and store the nucleotide frequencies for the coding sequences of both organisms.
+
+# Bar plot for E-coli
+```{r}
+library(ggplot2)
+ggplot(ecoli_nucleotide_freq, aes(x = Var1, y = Freq)) +
+  geom_bar(stat = "identity", fill = "orange") +
+  labs(title = "Nucleotide Frequencies in E. coli", 
+       x = "Nucleotide", 
+       y = "Frequency") +
+  theme_minimal()
+
+```
+This code creates a bar plot that visualizes the frequencies of different nucleotides in E. coli, making it easy to interpret the composition of its sequences.
+
+# Bar plot for deinococcus
+
+```{r}
+library(ggplot2)
+
+ggplot(deinococcus_nucleotide_freq, aes(x = Var1, y = Freq)) +
+  geom_bar(stat = "identity", fill = "yellow") +
+  labs(title = "Nucleotide Frequencies in Deinococcus radiodurans", 
+       x = "Nucleotide", 
+       y = "Frequency") +
+  theme_minimal()
+
+```
+This code creates a bar plot that visualizes the frequencies of different nucleotides in Deinococcus radiodurans, allowing for easy interpretation of its sequence composition.
+
+# calculate amino acid frequencies
+
+```{r}
+cal_amino_acid_frequency <- function(cds) {
+  # Translate coding sequences into protein sequences
+  protein_sequences <- sapply(cds, function(seq) translate(seq))
+  all_proteins <- paste(protein_sequences, collapse = "")
+  # Calculate frequency of each amino acid
+  aa_freq <- table(strsplit(all_proteins, NULL)[[1]])
+  return(as.data.frame(aa_freq))
+}
+```
+This code is used to calculate the frequencies of amino acids in the protein sequences translated from a set of coding sequences. This information is valuable for understanding the composition of proteins.
+
+
+# Calculating the aa frequency
+
+```{r}
+ecoli_aa_freq <- cal_amino_acid_frequency(ecoli_cds)
+deinococcus_aa_freq <- cal_amino_acid_frequency(deinococcus_cds)
+
+```
+These codes are used to calculate the frequencies of amino acids derived from the protein sequences translated from the coding sequences of both organisms.
+
+# plot for e-coli
+```{r}
+ggplot(ecoli_aa_freq, aes(x = Var1, y = Freq)) +
+   geom_bar(stat = "identity", fill = "blue") +
+  labs(title = "Amino Acid Frequencies in E. coli", x = "Amino Acid", y = "Frequency") +
+  theme_minimal()
+```
+This code is used to create a bar plot that visualizes the frequencies of different amino acids in Escherichia coli. This visualization allows for easy interpretation of protein composition.
+
+# calculate amino acid frequencies
+
+```{r}
+cal_amino_acid_frequency <- function(cds) {
+  # Translate coding sequences into protein sequences
+  protein_sequences <- sapply(cds, function(seq) translate(seq))
+  all_proteins <- paste(protein_sequences, collapse = "")
+  # Calculate frequency of each amino acid
+  aa_freq <- table(strsplit(all_proteins, NULL)[[1]])
+  return(as.data.frame(aa_freq))
+}
+```
+This code is used to calculate the frequencies of amino acids in the protein sequences translated from a set of coding sequences. This information is valuable for understanding the composition of proteins.
+
+# Calculating the aa frequency
+
+```{r}
+ecoli_aa_freq <- cal_amino_acid_frequency(ecoli_cds)
+deinococcus_aa_freq <- cal_amino_acid_frequency(deinococcus_cds)
+```
+The code invokes the cal_amino_acid_frequency function for both E. coli and Deinococcus. It processes ecoli_cds, converting the coding sequences into protein sequences and tallying the frequencies of each amino acid, which are then stored in the variable ecoli_aa_freq. Likewise, it uses deinococcus_cds to analyze the amino acid frequencies for Deinococcus, saving the results in deinococcus_aa_freq
+
+# plot for deinococcus
+
+```{r}
+ggplot(deinococcus_aa_freq, aes(x = Var1, y = Freq)) +
+   geom_bar(stat = "identity", fill = "lightblue") +
+  labs(title = "Amino Acid Frequencies in deinococcus", x = "Amino Acid", y = "Frequency") +
+  theme_minimal()
+```
+This code is used to create a bar plot that visualizes the frequencies of different amino acids in Deinococcus radiodurans. This visualization allows for easy interpretation of protein composition.
+
+# Checking the above values by printing them on the interface to check whether it is done correctly
+
+```{r}
+
+print("comparison of nucleotide frequencies:")
+print(merge(ecoli_nucleotide_freq, deinococcus_nucleotide_freq, by = "Var1", suffixes = c("_ecoli", "_deinococcus")))
+```
+This code is used to print information and compare the nucleotide frequencies of E. coli and Deinococcus radiodurans, displaying the results in a clear format for analysis. It aids in understanding the similarities and differences in nucleotide composition between both organisms.
+
+# Displaying the values
+
+```{r}
+print("Amino Acid Frequency Comparison:")
+print(merge(ecoli_aa_freq, deinococcus_aa_freq, by = "Var1", suffixes = c("_ecoli", "_deinococcus")))
+
+```
+This code is used to print the information and compare the amino acid frequencies of E. coli and Deinococcus radiodurans, displaying the results in a clear format for analysis. This comparison aids in understanding the similarities and differences in protein composition between both organisms.
+
+# Question 5
+
+```{r}
+library(seqinr)
+```
+
+# data will be stored in codon_list
+
+```{r}
+codon_usage_list <- list()
+```
+#codon usage for all sequences
+```{r}
+codon_usage_list <- lapply(cds, function(seq) {
+  uco(seq, as.data.frame = TRUE)
+})
+
+```
+
+# calculating RSCU for all sequences
+
+```{r}
+rscu_list <- lapply(cds, function(seq) {
+  uco(seq, index = "rscu", as.data.frame = TRUE)
+})
+
+```
+
+# check the data frames
+
+```{r}
+head(codon_usage_list[[1]])
+head(rscu_list[[1]])
+```
+
+# checking the colum names 
+```{r}
+print(names(codon_usage_list[[1]]))
+print(names(rscu_list[[1]]))
+
+```
+
+# Combine codon usage and RSCU
+```{r}
+combined_data_list <- mapply(function(cu, rscu) {
+  merge(cu, rscu, by = "codon", suffixes = c("_usage", "_rscu"))
+}, codon_usage_list, rscu_list, SIMPLIFY = FALSE)
+```
+
+
+# Combining all the results
+
+```{r}
+combined_codon_usage <- do.call(rbind, codon_usage_list)
+```
 
 
 
+# summarise all the codon usage and RSCU for all the sequences
+# Structure of the combined data frame
+
+```{r}
+head(combined_data_list[[1]])
+
+```
+
+# Summary of codon usage frequency
+```{r}
+summary_usage <- aggregate(freq_usage ~ codon, data = combined_data_list[[1]], sum)
+
+```
+
+# Summary of RSCU values
+```{r}
+summary_rscu <- aggregate(RSCU_usage ~ codon, data = combined_data_list[[1]], sum)
+
+```
+# summary of the above data
+```{r}
+print(summary_usage)
+print(summary_rscu)
+```
+
+# visualization of the output of condon usage frequency
+```{r}
+ggplot(summary_usage, aes(x = codon, y = freq_usage)) +
+  geom_bar(stat = "identity", fill = "brown") +
+  labs(title = "Total Codon Frequency", x = "Codon", y = "Frequency") +
+  theme_minimal()
+```
