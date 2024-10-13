@@ -144,42 +144,9 @@ sd(): This function computes the standard deviation of values in the column spec
 south[, 1]: This actually is the notation for accessing the first column of the dataframe south. Let's assume this column contains the measurements of the circumference of trees for one particular year, say 2005.
 south[, 2]: Likewise, the following line will compute the standard deviation of the second column in the south data frame-which one can guess contains the tree circumference measurements for another year, say 2020.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Question 8
 
-# mean and standard deviation of tree circumference at the start and end of the study
+# Mean and standard deviation of tree circumference at the start and end of the study
 #mean 
 ```{r}
 north <- subset(csv_columns,Site==("northeast"),c("Circumf_2005_cm","Circumf_2020_cm"))
