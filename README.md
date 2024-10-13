@@ -241,3 +241,18 @@ select = c("Circumf_2005_cm", argument Circumf_2020_cm: This argument selects th
 colMeans(): A function that calculates the mean of numeric columns in north data frame.
 This will output a named numeric vector showing the mean circumference for Circumf_2005_cm and Circumf_2020_cm.
 
+Qustion 10
+
+#Use the t.test to estimate the p-value that the 10 year growth is different at the two sites.
+
+```{r}
+csv_columns$growth_10_year <- csv_columns$Circumf_2020_cm - csv_columns$Circumf_2010_cm
+t_test_result <- t.test(growth_10_year ~ Site, data = csv_columns)
+print(t_test_result)
+```
+
+csv_columns$growth_10_year <- csv_columns$Circumf_2020_cm - csv_columns$Circumf_2010_cm : This line creates a new column in the csv columns data frame called growth_10_year that calculates the growth in the circumference of trees, this done by subtracting the circumference measured in the year 2010 from that in 2020.
+t.test(): This is a function of t-test that will show the comparison of mean values between two or more groups.
+growth_10_year ~ Site : This model that you want to test the differences in growth_10_year between the groups defined by the Site variable.
+data = csv_columns: This argument identifies the data frame containing the variables of interest.
+print(t_test_result): This line outputs the results of the t-test, which includes statistics such as the t-value, degrees of freedom, p-value, and confidence interval for the mean difference.
