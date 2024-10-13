@@ -61,7 +61,7 @@ top_genes : It prints the top 10 genes along with their expression values and me
 
 Question 4
 
-# the number of genes with a mean <10
+# The number of genes with a mean <10
 ```{r}
 num_genes_low_expression <- sum(gene_data$mean_expression < 10)
 num_genes_low_expression
@@ -70,7 +70,7 @@ The code counts how many genes in the gene_data dataframe have a mean expression
 
 Question 5
 
-# a histogram plot of the mean values
+# A histogram plot of the mean values
 ```{r}
 install.packages("ggplot2")
 library(ggplot2)
