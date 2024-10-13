@@ -884,43 +884,64 @@ This code used to generate and store the frequency of each k-mer, which is cruci
 colnames(deinococcus_kmer_counts) <- c("kmer", "freq_deinococcus")
 colnames(ecoli_kmer_counts) <- c("kmer", "freq_ecoli")
 ```
-# display the first few rows 
+This code used to rename the columns of the data frame deinococcus_kmer_counts and ecoli_kmer_counts for clarity and ease of use.
+
+
+# display the first few rows for the gene of interest deinococcus
 
 ```{r}
 print(head(deinococcus_kmer_counts))
 
 ```
-# display the first few rows 
+This code is used to display the first few rows of the deinococcus_kmer_counts data frame. this code helps to verify the contents and structure of the k-mer frequency data for Deinococcus radiodurans
+
+# display the first few rows for e-coli
+
 ```{r}
 print(head(ecoli_kmer_counts))
 ```
+This code used to display the first few rows of the ecoli_kmer_counts data frame. It helps to assess the contents and structure of the k-mer frequency data for E. coli,
+
+
 # total frequencies of k-mers 
+
 ```{r}
 total_deinococcus <- sum(deinococcus_kmer_counts$freq_deinococcus)
 total_ecoli <- sum(ecoli_kmer_counts$freq_ecoli)
 ```
+This code provides the total k-mer frequencies in both datasets, which can be useful for comparing k-mer distributions and understanding the overall abundance of k-mers in the protein sequences.
+
 # normalizes the k-mer frequencies 
+
 ```{r}
 deinococcus_kmer_counts$freq_deinococcus <- deinococcus_kmer_counts$freq_deinococcus / total_deinococcus
 ecoli_kmer_counts$freq_ecoli <- ecoli_kmer_counts$freq_ecoli / total_ecoli
 ```
+This code used to normalize the frequencies for a better comparison of k-mer frequencies between the both organism by converting raw counts into proportions
 
-# combining the counts
+# Combining the counts
 ```{r}
 combined_counts <- merge(deinococcus_kmer_counts, ecoli_kmer_counts, by = "kmer", all = TRUE)
 combined_counts[is.na(combined_counts)] <- 0
 combined_counts$ratio <- combined_counts$freq_deinococcus / combined_counts$freq_ecoli
 ```
+This code used to combine the k-mer frequency counts from both Deinococcus radiodurans and E. coli into a single data frame and calculate the ratio of their frequencies.
 
 # sorting the combined counts
 ```{r}
 sorted_counts <- combined_counts[order(-combined_counts$ratio), ]
 ```
 
+This code used to sort the combined k-mer counts based on the calculated ratio in descending order.
+
+
 # top 10 overrepresented k-mers
 ```{r}
 top_overrepresented <- sorted_counts[1:10, ]
 ```
+
+This code used to extract the top 10 k-mers that are represented in Deinococcus radiodurans compared to E. coli.
+
 
 # plot for Top 10 Overrepresented k-mers
 ```{r}
@@ -930,15 +951,20 @@ ggplot(top_overrepresented, aes(x = reorder(kmer, ratio), y = ratio)) +
   labs(title = "Top 10 Overrepresented k-mers", x = "K-mers", y = "Ratio (Deinococcus / E. coli)")
 
 ```
+This code used to create a bar plot that visualizes the top 10 epresented k-mers in Deinococcus radiodurans compared to E. coli. And sets the title of the plot and labels for the x and y axes, providing context for what the plot represents.
+
 # sorts the combined counts
 ```{r}
 sorted_underrepresented <- combined_counts[order(combined_counts$ratio), ]
 ```
+This code used to sort the combined k-mer counts based on the ratio in ascending order. The sorted data frame is assigned to the variable sorted_underrepresented, which now contains the k-mers arranged by their frequency ratios from lowest to highest.
 
 # top 10 underrepresented k-mers
 ```{r}
 top_underrepresented <- sorted_underrepresented[1:10, ]
 ```
+This code used to extract the top 10 k-mers that are underrepresented in Deinococcus radiodurans compared to E. coli. It helps to identifying the k-mers that are significantly less prevalent in Deinococcus radiodurans, which can be important for understanding differences in protein composition, function, or evolutionary adaptations between the two organisms.
+
 
 # plot for Top 10 Underrepresented k-mers
 ```{r}
@@ -947,3 +973,6 @@ ggplot(top_underrepresented, aes(x = reorder(kmer, ratio), y = ratio)) +
   coord_flip() +
   labs(title = "Top 10 Underrepresented k-mers", x = "K-mers", y = "Ratio (Deinococcus / E. coli)")
 ```
+This code used to create a bar plot that visualizes the top 10 underrepresented k-mers in Deinococcus radiodurans compared to E. coli.
+
+
