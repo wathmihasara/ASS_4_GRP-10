@@ -720,20 +720,24 @@ library(seqinr)
 ```
 Loading the installed seqinr package
 
+
 # data will be stored in codon_list
 
 ```{r}
 codon_usage_list <- list()
 ```
-#codon usage for all sequences
+This code sets up list named codon_usage_list, which will be used to store codon usage data later in the analysis.
+
+# codon usage for all sequences
 ```{r}
 codon_usage_list <- lapply(cds, function(seq) {
   uco(seq, as.data.frame = TRUE)
 })
 
 ```
+This code used to calculate the codon usage for each sequence in the cds list and saves the results in codon_usage_list. And indicates that the output should be returned as a data frame, making it easier to work with and analyze.
 
-# calculating RSCU for all sequences
+# Calculating RSCU for all sequences
 
 ```{r}
 rscu_list <- lapply(cds, function(seq) {
@@ -741,6 +745,7 @@ rscu_list <- lapply(cds, function(seq) {
 })
 
 ```
+This code is used to calculate the RSCU for all sequences in the cds list and stores the results in rscu_list. And indicates that the results should be returned in a data frame format for easier manipulation.
 
 # check the data frames
 
@@ -748,6 +753,7 @@ rscu_list <- lapply(cds, function(seq) {
 head(codon_usage_list[[1]])
 head(rscu_list[[1]])
 ```
+This code used to check the first few entries of the codon usage and RSCU data frames for the first sequence in their respective lists. This is useful for validating the calculations and ensuring the data is structured correctly.
 
 # checking the colum names 
 ```{r}
