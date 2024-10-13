@@ -68,6 +68,23 @@ num_genes_low_expression
 ```
 The code counts how many genes in the gene_data dataframe have a mean expression value below 10. It uses the sum() function to evaluate each entry in the mean_expression column, determining how many of these values are less than 10. The count of these low-expression genes is stored in the variable num_genes_low_expression, providing the total number of genes with low expression levels.
 
+Question 5
+
+# a histogram plot of the mean values
+```{r}
+install.packages("ggplot2")
+library(ggplot2)
+top_genes[,1:5]
+top_genes[,c(1,5)]
+Data_set<-top_genes[,c(1,5)]
+```
+ggplot(): Initializes the plot with Data set and maps mean expression to the x-axis.
+top_genes[, 1:5]: Shows the first 5 columns of `top genes`
+top_genes[, c(1, 5)]: Extracts only the first and fifth column
+Data_set <- top_genes[, c(1, 5)]: Extracts Gene ID and mean expression column
+
+
+
 
 
 
