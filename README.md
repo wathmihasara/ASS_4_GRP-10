@@ -120,6 +120,7 @@ colMeans(): A function that calculates the mean of numeric columns in north data
 This will output a named numeric vector showing the mean circumference for Circumf_2005_cm and Circumf_2020_cm.
 
 circumference mean of southwest.
+
 •	Circumf_2005_cm = 4.862 
 
 •	Circumf_2020_cm = 45.596  
