@@ -264,7 +264,7 @@ Question 1
 ```{r}
 install.packages("seqinr")
 ```
-This code is used to install the `seqinr` package.
+This code is used to install the seqinr package.
 
 ```{r}
 library(seqinr)
