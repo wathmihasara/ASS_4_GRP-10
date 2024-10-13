@@ -833,5 +833,46 @@ ggplot(summary_rscu, aes(x = codon, y = RSCU_usage)) +
 ```
 This code is used to visually represent the output of RSCU values. and to identify which codons are used more or less frequently in comparison to expected usage.
 
+# Question 6
 
+# read protein sequences from FASTA files
+
+```{r}
+deinococcus_cds <- read.fasta("deinococcus_radiodurans_cds.fa", seqtype = "AA", as.string = TRUE)
+ecoli_cds <- read.fasta("ecoli_cds.fa", seqtype = "AA", as.string = TRUE)
+```
+#convert the protein sequences read from the FASTA files into character vectors
+```{r}
+deinococcus_proteins <- unlist(lapply(deinococcus_cds, as.character))
+ecoli_proteins <- unlist(lapply(ecoli_cds, as.character))
+```
+#extracts k-mers 
+```{r}
+get_kmers <- function(sequences, k) {
+  kmers <- unlist(lapply(sequences, function(seq) {
+    sapply(1:(nchar(seq) - k + 1), function(i) substr(seq, i, i + k - 1))
+  }))
+  return(kmers)
+}
+```
+#extracts k-mers of lengths 3, 4, and 5 from the protein sequences of Deinococcus radiodurans and E. coli.
+```{r}
+kmers_deinococcus <- unlist(lapply(3:5, function(k) get_kmers(deinococcus_proteins, k)))
+kmers_ecoli <- unlist(lapply(3:5, function(k) get_kmers(ecoli_proteins, k)))
+```
+#counting the frequency of each k-mer extracted from the protein sequences
+```{r}
+deinococcus_kmer_counts <- as.data.frame(table(kmers_deinococcus))
+ecoli_kmer_counts <- as.data.frame(table(kmers_ecoli))
+```
+#renaming the columns of the data frames
+```{r}
+colnames(deinococcus_kmer_counts) <- c("kmer", "freq_deinococcus")
+colnames(ecoli_kmer_counts) <- c("kmer", "freq_ecoli")
+```
+#display the first few rows 
+```{r}
+print(head(deinococcus_kmer_counts))
+
+```
 
