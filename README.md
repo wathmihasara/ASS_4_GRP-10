@@ -11,7 +11,7 @@ download.file(URL, destfile = "gene_expression.tsv")
 url: Saves the file's URL for future downloads. This should be changed to the actual web address hosting your gene_expression.tsv file.
 destfile: Indicates the name and location on your local system where the downloaded file will be saved. In this case, the file with the name gene_expression.tsv will be saved in the current working directory.
 
-#read the file
+# Read File 
 
 ```{r}
 gene_data <- read.table("gene_expression.tsv", header = TRUE, sep = "\t")
@@ -21,7 +21,7 @@ the above code read.table(): This is the R function that reads tabular data file
 header = TRUE: It means the first line of the text file contains column names.
 sep = "\t" : This informs the reader that the tab character (\t) is utilized as the delimiter between values, a convention in TSV files. local system where the downloaded file will be saved. In this case, the file with the name gene_expression.tsv will be saved in the current working directory.
 
-#displaying the first six genes
+# Displaying the first six genes
 
 ```{r}
 head(gene_data)
@@ -30,7 +30,7 @@ head(gene_data)
 
 Question 2
 
-#calculating the mean
+# Calculating the Mean
 ```{r}
 str(gene_data)
 gene_data$mean_expression <- rowMeans(gene_data[, sapply(gene_data, is.numeric)], na.rm = TRUE)
@@ -47,7 +47,7 @@ head(gene_data) : Display the first six rows of the updated dataframe which shou
 
 Question 3
 
-# listing the genes with highest mean expression
+# Top ten genes with highest mean Expression
 ```{r}
 top_genes <- head(gene_data[order(-gene_data$mean_expression), ], 10)
 top_genes
