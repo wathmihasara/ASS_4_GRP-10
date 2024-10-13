@@ -841,12 +841,14 @@ This code is used to visually represent the output of RSCU values. and to identi
 deinococcus_cds <- read.fasta("deinococcus_radiodurans_cds.fa", seqtype = "AA", as.string = TRUE)
 ecoli_cds <- read.fasta("ecoli_cds.fa", seqtype = "AA", as.string = TRUE)
 ```
-#convert the protein sequences read from the FASTA files into character vectors
+
+# convert the protein sequences read from the FASTA files into character vectors
 ```{r}
 deinococcus_proteins <- unlist(lapply(deinococcus_cds, as.character))
 ecoli_proteins <- unlist(lapply(ecoli_cds, as.character))
 ```
-#extracts k-mers 
+
+# extracts k-mers 
 ```{r}
 get_kmers <- function(sequences, k) {
   kmers <- unlist(lapply(sequences, function(seq) {
@@ -855,24 +857,87 @@ get_kmers <- function(sequences, k) {
   return(kmers)
 }
 ```
-#extracts k-mers of lengths 3, 4, and 5 from the protein sequences of Deinococcus radiodurans and E. coli.
+
+# extracts k-mers of lengths 3, 4, and 5 from the protein sequences of Deinococcus radiodurans and E. coli.
+
 ```{r}
 kmers_deinococcus <- unlist(lapply(3:5, function(k) get_kmers(deinococcus_proteins, k)))
 kmers_ecoli <- unlist(lapply(3:5, function(k) get_kmers(ecoli_proteins, k)))
 ```
-#counting the frequency of each k-mer extracted from the protein sequences
+
+# counting the frequency of each k-mer extracted from the protein sequences
+
 ```{r}
 deinococcus_kmer_counts <- as.data.frame(table(kmers_deinococcus))
 ecoli_kmer_counts <- as.data.frame(table(kmers_ecoli))
 ```
-#renaming the columns of the data frames
+
+# renaming the columns of the data frames
+
 ```{r}
 colnames(deinococcus_kmer_counts) <- c("kmer", "freq_deinococcus")
 colnames(ecoli_kmer_counts) <- c("kmer", "freq_ecoli")
 ```
-#display the first few rows 
+# display the first few rows 
+
 ```{r}
 print(head(deinococcus_kmer_counts))
 
 ```
+# display the first few rows 
+```{r}
+print(head(ecoli_kmer_counts))
+```
+#total frequencies of k-mers 
+```{r}
+total_deinococcus <- sum(deinococcus_kmer_counts$freq_deinococcus)
+total_ecoli <- sum(ecoli_kmer_counts$freq_ecoli)
+```
+#normalizes the k-mer frequencies 
+```{r}
+deinococcus_kmer_counts$freq_deinococcus <- deinococcus_kmer_counts$freq_deinococcus / total_deinococcus
+ecoli_kmer_counts$freq_ecoli <- ecoli_kmer_counts$freq_ecoli / total_ecoli
+```
 
+#combining the counts
+```{r}
+combined_counts <- merge(deinococcus_kmer_counts, ecoli_kmer_counts, by = "kmer", all = TRUE)
+combined_counts[is.na(combined_counts)] <- 0
+combined_counts$ratio <- combined_counts$freq_deinococcus / combined_counts$freq_ecoli
+```
+
+#sorting the combined counts
+```{r}
+sorted_counts <- combined_counts[order(-combined_counts$ratio), ]
+```
+
+#top 10 overrepresented k-mers
+```{r}
+top_overrepresented <- sorted_counts[1:10, ]
+```
+
+#plot for Top 10 Overrepresented k-mers
+```{r}
+ggplot(top_overrepresented, aes(x = reorder(kmer, ratio), y = ratio)) +
+ geom_bar(stat = "identity", fill = "beige") +
+  coord_flip() +
+  labs(title = "Top 10 Overrepresented k-mers", x = "K-mers", y = "Ratio (Deinococcus / E. coli)")
+
+```
+#sorts the combined counts
+```{r}
+sorted_underrepresented <- combined_counts[order(combined_counts$ratio), ]
+```
+
+#top 10 underrepresented k-mers
+```{r}
+top_underrepresented <- sorted_underrepresented[1:10, ]
+```
+
+#plot for Top 10 Underrepresented k-mers
+```{r}
+ggplot(top_underrepresented, aes(x = reorder(kmer, ratio), y = ratio)) +
+  geom_bar(stat = "identity", fill = "red") +
+  coord_flip() +
+  labs(title = "Top 10 Underrepresented k-mers", x = "K-mers", y = "Ratio (Deinococcus / E. coli)")
+```
