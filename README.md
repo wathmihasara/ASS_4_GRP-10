@@ -718,6 +718,7 @@ This code is used to print the information and compare the amino acid frequencie
 ```{r}
 library(seqinr)
 ```
+Loading the installed seqinr package
 
 # data will be stored in codon_list
 
@@ -803,10 +804,11 @@ ggplot(summary_usage, aes(x = codon, y = freq_usage)) +
   labs(title = "Total Codon Frequency", x = "Codon", y = "Frequency") +
   theme_minimal()
 ```
-# visualization of the output of RSCU values
+# Visualization of the output of RSCU values
 ```{r}
 ggplot(summary_rscu, aes(x = codon, y = RSCU_usage)) +
   geom_bar(stat = "identity", fill = "salmon") +
   labs(title = "Total RSCU Values", x = "Codon", y = "RSCU") +
   theme_minimal()
 ```
+
