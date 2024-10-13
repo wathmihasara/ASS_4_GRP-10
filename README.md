@@ -61,3 +61,74 @@ top_genes : It prints the top 10 genes along with their expression values and me
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Question 8
+
+# mean and standard deviation of three circumference at the start and end of the study
+#mean 
+```{r}
+north <- subset(csv_columns,Site==("northeast"),c("Circumf_2005_cm","Circumf_2020_cm"))
+colMeans(north)
+north
+```
+#mean
+```{r}
+south <- subset(csv_columns,Site==("southwest"),c("Circumf_2005_cm","Circumf_2020_cm"))
+colMeans(south)
+south
+```
+This command will show the entire data frame stored in the variable csv_columns and can inspect the data, including the columns that contain tree circumference measurements.
+#mean
+subset(): It generates a new data frame, north/south, containing only the rows whose value in the column Site is "northeast” or “Southeast."
+select = c("Circumf_2005_cm", argument Circumf_2020_cm: This argument selects the column that will remain in the new data frame; here, it selects columns corresponding to girth measurements for 2005 and 2020.
+colMeans(): A function that calculates the mean of numeric columns in north data frame.
+This will output a named numeric vector showing the mean circumference for Circumf_2005_cm and Circumf_2020_cm.
+circumference mean of southwest.
+•	Circumf_2005_cm = 4.862 
+
+•	Circumf_2020_cm = 45.596  
+
+Circumference mean of northeast.
+
+•	Circumf_2005_cm = 5.292           
+
+•	Circumf_2020_cm = 54.228
+
+
+
+
