@@ -260,7 +260,8 @@ print(t_test_result): This line outputs the results of the t-test, which include
 
 
 # Part 2
-Question 1
+
+# Question 1
 
 # Intsalling seqinr
 ```{r}
@@ -406,7 +407,7 @@ print(coding_sequences_table)
 ```
 We used this command to print the contents of the data.
 
-Question 2
+# Question 2
 
 # Loading the library
 ```{r}
@@ -471,7 +472,7 @@ print(coding_dna_comparison)
 ```
 This code is used to present the result of the earlier comparison, providing clear and informative information regarding which organism has more total sequence or their lengths are equal.
 
-Question 3
+# Question 3
 
 # Loading the libraries
 ```{r}
