@@ -195,5 +195,33 @@ Southwest
     Circumf_2010_cm      	Circumf_2015_cm     	Circumf_2020_cm
            10.106          	21.316          	45.596
 
+Question 9 
 
+#Calculate the mean growth over the last 10 years at each site
+
+```{r}
+north2 <- subset(csv_columns,Site==("northeast"))
+```
+
+```{r}
+north2 <- subset(csv_columns,Site==("northeast"))
+north3 <- subset(north2[,3:6])
+colMeans(north3)
+```
+```{r}
+south2 <- subset(csv_columns,Site==("southwest"))
+south3 <- subset(south2[,3:6])
+colMeans(south3)
+```
+```{r}
+str(csv_columns)
+```
+This command will show the entire data frame stored in the variable csv_columns and can inspect the data, including the columns that contain tree circumference measurements.
+
+#mean
+
+subset(): It generates a new data frame, north/south, containing only the rows whose value in the column Site is "northeast” or “Southeast."
+select = c("Circumf_2005_cm", argument Circumf_2020_cm: This argument selects the column that will remain in the new data frame; here, it selects columns corresponding to girth measurements for 2005 and 2020.
+colMeans(): A function that calculates the mean of numeric columns in north data frame.
+This will output a named numeric vector showing the mean circumference for Circumf_2005_cm and Circumf_2020_cm.
 
