@@ -401,7 +401,70 @@ print(coding_sequences_table)
 ```
 We used this command to print the contents of the data.
 
+Question 2
 
+# Loading the library
+```{r}
+library(seqinr)
+```
+The code reads an uncompressed FASTA file named ecoli_cds.fa.gz, which contains coding sequences for Escherichia coli, using the read.fa function from the seqinr  package.
+
+# Reading the FASTA files
+```{r}
+ecoli_cds <- seqinr::read.fasta("ecoli_cds.fa")
+deinococcus_cds <- seqinr::read.fasta("deinococcus_radiodurans_cds.fa")
+```
+This code is used to read and load the coding sequence data for both Escherichia coli and Deinococcu radiodurans Fasta files.
+
+# Calculating the lengths of coding sequences
+```{r}
+ecoli_lengths <- sapply(ecoli_cds, length)
+deinococcus_lengths <- sapply(deinococcus_cds, length)
+```
+These codes used to calculate and store the lengths of all coding sequences for both organisms.
+
+# Summing the lengths
+```{r}
+ecoli_total_length <- sum(ecoli_lengths)
+```
+```{r}
+deinococcus_total_length <- sum(deinococcus_lengths)
+```
+These codes used to summarize the lengths of all coding sequence for both organisms
+
+# Summary table
+```{r}
+coding_dna_table <- data.frame(
+  Organism = c("E. coli", "Deinococcus radiodurans"),
+  Total_Coding_DNA_Length = c(ecoli_total_length, deinococcus_total_length)
+)
+```
+This code used to summarize the number of coding sequences for both organisms Escherichia coli and Deinococcus radiodurans. This code organizes the data into table format
+
+# Table with the data
+```{r}
+print(coding_dna_table)
+```
+We used this command to print the contents of the data.
+
+
+# Differances 
+```{r}
+if (ecoli_total_length > deinococcus_total_length) {
+  coding_dna_comparison <- "E. coli has more total coding DNA than Deinococcus radiodurans."
+} else if (ecoli_total_length < deinococcus_total_length) {
+  coding_dna_comparison <- "Deinococcus radiodurans has more total coding DNA than E. coli."
+} else {
+  coding_dna_comparison <- "Both organisms have the same total coding DNA length."
+}
+```
+This code used to determine and make a comparison about the total coding DNA lengths of the two organisms, allowing for interpretation of which organism has more DNA sequences
+
+# Description
+```{r}
+print(coding_dna_comparison)
+```
+This code is used to present the result of the earlier comparison, providing clear and informative information regarding which organism has more total sequence or their lengths are equal.
 
 
 
