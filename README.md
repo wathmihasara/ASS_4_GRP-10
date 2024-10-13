@@ -156,17 +156,6 @@ select = c("Circumf_2005_cm", argument Circumf_2020_cm: This argument selects th
 colMeans(): A function that calculates the mean of numeric columns in north data frame.
 This will output a named numeric vector showing the mean circumference for Circumf_2005_cm and Circumf_2020_cm.
 
-circumference mean of southwest.
-
-•	Circumf_2005_cm = 4.862 
-
-•	Circumf_2020_cm = 45.596  
-
-Circumference mean of northeast.
-
-•	Circumf_2005_cm = 5.292           
-
-•	Circumf_2020_cm = 54.228
 
 #Standard deviation
 
@@ -174,13 +163,6 @@ sd(): This function computes the standard deviation of values in the column spec
 south[, 1]: This actually is the notation for accessing the first column of the dataframe south. Let's assume this column contains the measurements of the circumference of trees for one particular year, say 2005.
 south[, 2]: Likewise, the following line will compute the standard deviation of the second column in the south data frame-which one can guess contains the tree circumference measurements for another year, say 2020.
 
-Standard deviation values of south west
-[1] 1.147471
-[1] 17.87345
-
-Standard deviation values of northeast
-[1] 0.9140267
-[1] 25.22795
 
 #Boxplot
 boxplot(): This function generates the boxplot.
