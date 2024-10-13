@@ -113,6 +113,36 @@ colnames(csv_columns)
 read.csv(): This method reads a CSV document from the route indicated and generates a data frame based on its contents. The path here should be the full directory path where the file is located on your local machine. The resulting data frame is stored in a variable called csv columns.
 colnames(): This function extracts the names of columns in the data frame
 
+Question 7
+
+# Mean and standard deviation of three circumference at the start and end of the study
+```{r}
+csv_columns
+```
+This command will show the entire data frame stored in the variable csv_columns and can inspect the data, including the columns that contain tree circumference measurements.
+
+# Mean
+```{r}
+north <- subset(csv_columns,Site==("northeast"),c("Circumf_2005_cm","Circumf_2020_cm"))
+colMeans(north)
+north
+south <- subset(csv_columns,Site==("southwest"),c("Circumf_2005_cm","Circumf_2020_cm"))
+colMeans(south)
+south
+```
+subset(): It generates a new data frame, north/south, containing only the rows whose value in the column Site is "northeast” or “Southeast."
+select = c("Circumf_2005_cm", argument Circumf_2020_cm: This argument selects the column that will remain in the new data frame; here, it selects columns corresponding to girth measurements for 2005 and 2020.
+colMeans(): A function that calculates the mean of numeric columns in north data frame.
+This will output a named numeric vector showing the mean circumference for Circumf_2005_cm and Circumf_2020_cm.
+
+# Standard Deviation
+```{r}
+sd(north[,1])
+sd(north[,2])
+```
+sd(): This function computes the standard deviation of values in the column specified.
+south[, 1]: This actually is the notation for accessing the first column of the dataframe south. Let's assume this column contains the measurements of the circumference of trees for one particular year, say 2005.
+south[, 2]: Likewise, the following line will compute the standard deviation of the second column in the south data frame-which one can guess contains the tree circumference measurements for another year, say 2020.
 
 
 
