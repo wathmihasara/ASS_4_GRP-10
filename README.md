@@ -96,7 +96,22 @@ main: The plot was titled.
 col: The bars are color-filled in light blue.
 border: Bars are outlined in black borders.
 
+Question 6
 
+# CSV download
+```{r}
+URL="https://raw.githubusercontent.com/ghazkha/Assessment4/refs/heads/main/growth_data.csv"
+download.file(URL, destfile = "gene_expression.csv")
+```
+All codes are described previously in downloading the gene.
+
+# Column Names
+```{r}
+csv_columns <- read.csv("/home/s224747674/assesment 4_grp 10/ASS_4_GRP-10/gene_expression.csv")
+colnames(csv_columns)
+```
+read.csv(): This method reads a CSV document from the route indicated and generates a data frame based on its contents. The path here should be the full directory path where the file is located on your local machine. The resulting data frame is stored in a variable called csv columns.
+colnames(): This function extracts the names of columns in the data frame
 
 
 
