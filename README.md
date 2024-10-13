@@ -28,7 +28,9 @@ head(gene_data)
 ```
 (gene_data): The first six rows of the dataset are displayed by head(gene_data) to provide a brief overview of its organization and content.
 
-# calculating the mean
+Question 2
+
+#calculating the mean
 ```{r}
 str(gene_data)
 gene_data$mean_expression <- rowMeans(gene_data[, sapply(gene_data, is.numeric)], na.rm = TRUE)
@@ -42,3 +44,5 @@ rowMeans():  computes the mean of each row (gene) across the numeric columns (sa
 na.rm = TRUE:  ensures that any missing values (NA) are ignored in the calculation.
 gene_data$mean_expression <- ... : It calculates the mean expression for each gene and stores it in a new column called mean_expression in the gene_data data frame.
 head(gene_data) : Display the first six rows of the updated dataframe which should include the new column mean_expression.
+
+question 3
