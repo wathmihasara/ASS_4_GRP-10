@@ -159,12 +159,31 @@ This will output a named numeric vector showing the mean circumference for Circu
 
 #Standard deviation
 
+#sd
+```{r}
+sd(south[,1])
+sd(south[,2])
+```
+#sd
+```{r}
+sd(north[,1])
+sd(north[,2])
+
 sd(): This function computes the standard deviation of values in the column specified.
 south[, 1]: This actually is the notation for accessing the first column of the dataframe south. Let's assume this column contains the measurements of the circumference of trees for one particular year, say 2005.
 south[, 2]: Likewise, the following line will compute the standard deviation of the second column in the south data frame-which one can guess contains the tree circumference measurements for another year, say 2020.
 
 
 #Boxplot
+
+```{r}
+boxplot(north[,1],north[,2],ylab="tree circumference",names = c("Circumf_2005_cm","Circumf_2020_cm"))
+```
+#box plot
+```{r}
+boxplot(south[,1],south[,2],ylab="tree circumference",names = c("Circumf_2005_cm","Circumf_2020_cm"))
+```
+
 boxplot(): This function generates the boxplot.
 
 
