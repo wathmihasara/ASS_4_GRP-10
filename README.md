@@ -1,7 +1,10 @@
 # ASS_4_GRP-10
-#PART 1 
-#Question 1
-#Downloading the gene from the following code.
+
+# PART 1 
+
+# Question 1
+
+# Downloading the gene from the following code.
 
 ```{r}
 URL="https://raw.githubusercontent.com/ghazkha/Assessment4/refs/heads/main/gene_expression.tsv"
@@ -47,7 +50,7 @@ head(gene_data) : Display the first six rows of the updated dataframe which shou
 
 Question 3
 
-# Top ten genes with highest mean Expression
+# Top ten genes with the highest mean Expression
 ```{r}
 top_genes <- head(gene_data[order(-gene_data$mean_expression), ], 10)
 top_genes
@@ -230,7 +233,7 @@ str(csv_columns)
 ```
 This command will show the entire data frame stored in the variable csv_columns and can inspect the data, including the columns that contain tree circumference measurements.
 
-#mean
+# mean
 
 subset(): It generates a new data frame, north/south, containing only the rows whose value in the column Site is "northeast” or “Southeast."
 select = c("Circumf_2005_cm", argument Circumf_2020_cm: This argument selects the column that will remain in the new data frame; here, it selects columns corresponding to girth measurements for 2005 and 2020.
@@ -256,7 +259,7 @@ print(t_test_result): This line outputs the results of the t-test, which include
 
 
 
-#Part 2
+# Part 2
 Question 1
 
 # Intsalling seqinr
@@ -394,7 +397,7 @@ coding_sequences_table <- data.frame(
   Number_of_Coding_Sequences = c(ecoli_count, deinococcus_count)
 )
 ```
-This code used to summarize the number of coding sequences for both organisms Escherichia coli and Deinococcus radiodurans. This code organizes the data into table format.
+This code is used to summarize the number of coding sequences for both organisms Escherichia coli and Deinococcus radiodurans. This code organizes the data into table format.
 
 # Printing the table
 
@@ -423,7 +426,7 @@ This code is used to read and load the coding sequence data for both Escherichia
 ecoli_lengths <- sapply(ecoli_cds, length)
 deinococcus_lengths <- sapply(deinococcus_cds, length)
 ```
-These codes used to calculate and store the lengths of all coding sequences for both organisms.
+These codes are used to calculate and store the lengths of all coding sequences for both organisms.
 
 # Summing the lengths
 ```{r}
@@ -441,7 +444,7 @@ coding_dna_table <- data.frame(
   Total_Coding_DNA_Length = c(ecoli_total_length, deinococcus_total_length)
 )
 ```
-This code used to summarize the number of coding sequences for both organisms Escherichia coli and Deinococcus radiodurans. This code organizes the data into table format
+This code is used to summarize the number of coding sequences for both organisms Escherichia coli and Deinococcus radiodurans. This code organizes the data into table format
 
 # Table with the data
 ```{r}
@@ -460,7 +463,7 @@ if (ecoli_total_length > deinococcus_total_length) {
   coding_dna_comparison <- "Both organisms have the same total coding DNA length."
 }
 ```
-This code used to determine and make a comparison about the total coding DNA lengths of the two organisms, allowing for interpretation of which organism has more DNA sequences
+This code is used to determine and make a comparison of the total coding DNA lengths of the two organisms, allowing for the interpretation of which organism has more DNA sequences
 
 # Description
 ```{r}
@@ -484,7 +487,7 @@ length_data <- data.frame(
   Organism = c(rep("E. coli", length(ecoli_lengths)), rep("Deinococcus radiodurans", length(deinococcus_lengths)))
 )
 ```
-This code creates a data that merges the lengths of coding sequences for both organisms, making it suitable for generating box plots to visually compare the distribution of sequence lengths between E. coli and Deinococcus radiodurans.
+This code creates data that merges the lengths of coding sequences for both organisms, making it suitable for generating box plots to visually compare the distribution of sequence lengths between E. coli and Deinococcus radiodurans.
 
 # The box plot
 ```{r}
@@ -493,9 +496,9 @@ ggplot(length_data, aes(x = Organism, y = Length)) +
   labs(title = "Length Analysis of Coding Sequences", x = "Species", y = "Sequence Length (nucleotides)") +
   theme_minimal()
 ```
-This code used to generate a box plot that visually compares the lengths of coding sequences between E. coli and Deinococcus radiodurans.
+This code is used to generate a box plot that visually compares the lengths of coding sequences between E. coli and Deinococcus radiodurans.
 
-# Calculating the mean and medien lengths
+# Calculating the mean and median lengths
 ```{r}
 ecoli_mean <- mean(ecoli_lengths)
 ecoli_median <- median(ecoli_lengths)
@@ -505,7 +508,7 @@ deinococcus_median <- median(deinococcus_lengths)
 ```
 This code calculates and stores both the mean and median lengths of coding sequences for E. coli and Deinococcus radiodurans, providing measures that summarize the distribution of sequence lengths for each organism.
 
-# Summary of mean and medien
+# Summary of mean and median
 ```{r}
 summary_length_table <- data.frame(
   Organism = c("E. coli", "Deinococcus radiodurans"),
@@ -513,15 +516,15 @@ summary_length_table <- data.frame(
   Median_Length = c(ecoli_median, deinococcus_median)
 )
 ```
-This code prepares a summary data that mean and median lengths for the coding sequences of E. coli and Deinococcus radiodurans, facilitating straightforward comparison and analysis of their coding sequence characteristics.
+This code prepares summary data the mean and median lengths for the coding sequences of E. coli and Deinococcus radiodurans, facilitating straightforward comparison and analysis of their coding sequence characteristics.
 
 # Table
 ```{r}
 print(summary_length_table)
 ```
-This code is used to print the summary table, allowing to easily view and compare the mean and median lengths of coding sequences for the both organisms.
+This code is used to print the summary table, allowing to easily view and compare the mean and median lengths of coding sequences for both organisms.
 
-# Describing the differances of mean
+# Describing the differences of mean
 ```{r}
 mean_diff <- if (ecoli_mean > deinococcus_mean) {
   "E. coli has a longer mean coding sequence length."
@@ -531,9 +534,9 @@ mean_diff <- if (ecoli_mean > deinococcus_mean) {
   "Both organisms have the same mean coding sequence length."
 }
 ```
-This code used to generate a comparison statement about the mean coding sequence lengths of the two organisms, allowing for a clear interpretation of which organism has a longer mean length or if they are equal
+This code is used to generate a comparison statement about the mean coding sequence lengths of the two organisms, allowing for a clear interpretation of which organism has a longer mean length or if they are equal
 
-# Describing the medien differance 
+# Describing the median difference 
 ```{r}
 median_diff <- if (ecoli_median > deinococcus_median) {
   "E. coli has a longer median coding sequence length."
@@ -543,7 +546,7 @@ median_diff <- if (ecoli_median > deinococcus_median) {
   "Both organisms have the same median coding sequence length."
 }
 ```
-This code used to generate a comparison statement regarding the median coding sequence lengths of the two organisms. It provides a clear interpretation of which organism has a longer median length or if they are equal.
+This code is used to generate a comparison statement regarding the median coding sequence lengths of the two organisms. It provides a clear interpretation of which organism has a longer median length or if they are equal.
 
 # Data (final)
 ```{r}
@@ -551,7 +554,7 @@ print(mean_diff)
 print(median_diff)
 ```
 
-These codes used to print the results of the comparisons for both the mean and median coding sequence lengths, allowing to easily view and interpret the findings regarding the differences between the two organisms
+These codes are used to print the results of the comparisons for both the mean and median coding sequence lengths, allowing to easily view and interpret the findings regarding the differences between the two organisms
 
 # Question 4
 
@@ -726,7 +729,7 @@ Loading the installed seqinr package
 ```{r}
 codon_usage_list <- list()
 ```
-This code sets up list named codon_usage_list, which will be used to store codon usage data later in the analysis.
+This code sets up a list named codon_usage_list, which will be used to store codon usage data later in the analysis.
 
 # codon usage for all sequences
 ```{r}
@@ -735,7 +738,7 @@ codon_usage_list <- lapply(cds, function(seq) {
 })
 
 ```
-This code used to calculate the codon usage for each sequence in the cds list and saves the results in codon_usage_list. And indicates that the output should be returned as a data frame, making it easier to work with and analyze.
+This code is used to calculate the codon usage for each sequence in the cds list and saves the results in codon_usage_list. And indicates that the output should be returned as a data frame, making it easier to work with and analyze.
 
 # Calculating RSCU for all sequences
 
@@ -848,7 +851,7 @@ This code  used to read the protein sequences from the FASTA file for Deinococcu
 deinococcus_proteins <- unlist(lapply(deinococcus_cds, as.character))
 ecoli_proteins <- unlist(lapply(ecoli_cds, as.character))
 ```
-This code used to convert the protein sequences that were read from the FASTA files into character vectors for easier manipulation and analysis in R.
+This code is used to convert the protein sequences that were read from the FASTA files into character vectors for easier manipulation and analysis in R.
 
 # extracts k-mers 
 ```{r}
@@ -867,7 +870,7 @@ This code used to systematically extract all possible contiguous subsequences of
 kmers_deinococcus <- unlist(lapply(3:5, function(k) get_kmers(deinococcus_proteins, k)))
 kmers_ecoli <- unlist(lapply(3:5, function(k) get_kmers(ecoli_proteins, k)))
 ```
-This code used to gather all possible 3-mers, 4-mers, and 5-mers from the protein sequences of both organisms
+This code is used to gather all possible 3-mers, 4-mers, and 5-mers from the protein sequences of both organisms
 
 # counting the frequency of each k-mer extracted from the protein sequences
 
@@ -875,7 +878,7 @@ This code used to gather all possible 3-mers, 4-mers, and 5-mers from the protei
 deinococcus_kmer_counts <- as.data.frame(table(kmers_deinococcus))
 ecoli_kmer_counts <- as.data.frame(table(kmers_ecoli))
 ```
-This code used to generate and store the frequency of each k-mer, which is crucial for understanding the distribution and occurrence of specific k-mers within the protein sequences of both organisms
+This code is used to generate and store the frequency of each k-mer, which is crucial for understanding the distribution and occurrence of specific k-mers within the protein sequences of both organisms
 
 
 # renaming the columns of the data frames
@@ -884,7 +887,7 @@ This code used to generate and store the frequency of each k-mer, which is cruci
 colnames(deinococcus_kmer_counts) <- c("kmer", "freq_deinococcus")
 colnames(ecoli_kmer_counts) <- c("kmer", "freq_ecoli")
 ```
-This code used to rename the columns of the data frame deinococcus_kmer_counts and ecoli_kmer_counts for clarity and ease of use.
+This code is used to rename the columns of the data frame deinococcus_kmer_counts and ecoli_kmer_counts for clarity and ease of use.
 
 
 # display the first few rows for the gene of interest deinococcus
@@ -900,7 +903,7 @@ This code is used to display the first few rows of the deinococcus_kmer_counts d
 ```{r}
 print(head(ecoli_kmer_counts))
 ```
-This code used to display the first few rows of the ecoli_kmer_counts data frame. It helps to assess the contents and structure of the k-mer frequency data for E. coli,
+This code is used to display the first few rows of the ecoli_kmer_counts data frame. It helps to assess the contents and structure of the k-mer frequency data for E. coli,
 
 
 # total frequencies of k-mers 
@@ -917,7 +920,7 @@ This code provides the total k-mer frequencies in both datasets, which can be us
 deinococcus_kmer_counts$freq_deinococcus <- deinococcus_kmer_counts$freq_deinococcus / total_deinococcus
 ecoli_kmer_counts$freq_ecoli <- ecoli_kmer_counts$freq_ecoli / total_ecoli
 ```
-This code used to normalize the frequencies for a better comparison of k-mer frequencies between the both organism by converting raw counts into proportions
+This code is used to normalize the frequencies for a better comparison of k-mer frequencies between the both organism by converting raw counts into proportions
 
 # Combining the counts
 ```{r}
@@ -925,14 +928,14 @@ combined_counts <- merge(deinococcus_kmer_counts, ecoli_kmer_counts, by = "kmer"
 combined_counts[is.na(combined_counts)] <- 0
 combined_counts$ratio <- combined_counts$freq_deinococcus / combined_counts$freq_ecoli
 ```
-This code used to combine the k-mer frequency counts from both Deinococcus radiodurans and E. coli into a single data frame and calculate the ratio of their frequencies.
+This code is used to combine the k-mer frequency counts from both Deinococcus radiodurans and E. coli into a single data frame and calculate the ratio of their frequencies.
 
 # sorting the combined counts
 ```{r}
 sorted_counts <- combined_counts[order(-combined_counts$ratio), ]
 ```
 
-This code used to sort the combined k-mer counts based on the calculated ratio in descending order.
+This code is used to sort the combined k-mer counts based on the calculated ratio in descending order.
 
 
 # top 10 overrepresented k-mers
@@ -940,7 +943,7 @@ This code used to sort the combined k-mer counts based on the calculated ratio i
 top_overrepresented <- sorted_counts[1:10, ]
 ```
 
-This code used to extract the top 10 k-mers that are represented in Deinococcus radiodurans compared to E. coli.
+This code is used to extract the top 10 k-mers that are represented in Deinococcus radiodurans compared to E. coli.
 
 
 # plot for Top 10 Overrepresented k-mers
@@ -957,13 +960,13 @@ This code used to create a bar plot that visualizes the top 10 epresented k-mers
 ```{r}
 sorted_underrepresented <- combined_counts[order(combined_counts$ratio), ]
 ```
-This code used to sort the combined k-mer counts based on the ratio in ascending order. The sorted data frame is assigned to the variable sorted_underrepresented, which now contains the k-mers arranged by their frequency ratios from lowest to highest.
+This code is used to sort the combined k-mer counts based on the ratio in ascending order. The sorted data frame is assigned to the variable sorted_underrepresented, which now contains the k-mers arranged by their frequency ratios from lowest to highest.
 
 # top 10 underrepresented k-mers
 ```{r}
 top_underrepresented <- sorted_underrepresented[1:10, ]
 ```
-This code used to extract the top 10 k-mers that are underrepresented in Deinococcus radiodurans compared to E. coli. It helps to identifying the k-mers that are significantly less prevalent in Deinococcus radiodurans, which can be important for understanding differences in protein composition, function, or evolutionary adaptations between the two organisms.
+This code is used to extract the top 10 k-mers that are underrepresented in Deinococcus radiodurans compared to E. coli. It helps to identify the k-mers that are significantly less prevalent in Deinococcus radiodurans, which can be important for understanding differences in protein composition, function, or evolutionary adaptations between the two organisms.
 
 
 # plot for Top 10 Underrepresented k-mers
@@ -973,6 +976,6 @@ ggplot(top_underrepresented, aes(x = reorder(kmer, ratio), y = ratio)) +
   coord_flip() +
   labs(title = "Top 10 Underrepresented k-mers", x = "K-mers", y = "Ratio (Deinococcus / E. coli)")
 ```
-This code used to create a bar plot that visualizes the top 10 underrepresented k-mers in Deinococcus radiodurans compared to E. coli.
+This code is used to create a bar plot that visualizes the top 10 underrepresented k-mers in Deinococcus radiodurans compared to E. coli.
 
 
