@@ -59,8 +59,14 @@ head() : It selects the first 10 rows of the reordered data frame i.e., the 10 g
 top_genes <-. : These 10 selected genes are stored in the data frame top_genes for further inspection.
 top_genes : It prints the top 10 genes along with their expression values and mean expression.
 
+Question 4
 
-
+# the number of genes with a mean <10
+```{r}
+num_genes_low_expression <- sum(gene_data$mean_expression < 10)
+num_genes_low_expression
+```
+The code counts how many genes in the gene_data dataframe have a mean expression value below 10. It uses the sum() function to evaluate each entry in the mean_expression column, determining how many of these values are less than 10. The count of these low-expression genes is stored in the variable num_genes_low_expression, providing the total number of genes with low expression levels.
 
 
 
