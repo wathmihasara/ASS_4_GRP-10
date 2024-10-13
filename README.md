@@ -99,7 +99,7 @@ top_genes : It prints the top 10 genes along with their expression values and me
 
 Question 8
 
-# mean and standard deviation of three circumference at the start and end of the study
+# mean and standard deviation of tree circumference at the start and end of the study
 #mean 
 ```{r}
 north <- subset(csv_columns,Site==("northeast"),c("Circumf_2005_cm","Circumf_2020_cm"))
