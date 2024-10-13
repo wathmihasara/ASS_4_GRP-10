@@ -753,14 +753,14 @@ This code is used to calculate the RSCU for all sequences in the cds list and st
 head(codon_usage_list[[1]])
 head(rscu_list[[1]])
 ```
-This code used to check the first few entries of the codon usage and RSCU data frames for the first sequence in their respective lists. This is useful for validating the calculations and ensuring the data is structured correctly.
+This code is used to check the first few entries of the codon usage and RSCU data frames for the first sequence in their respective lists. This is useful for validating the calculations and ensuring the data is structured correctly.
 
-# checking the colum names 
+# checking the column names 
 ```{r}
 print(names(codon_usage_list[[1]]))
 print(names(rscu_list[[1]]))
 ```
-This code used to check and displays the column names of the codon usage and RSCU data frames for the first sequence in their respective lists.
+This code is used to check and display the column names of the codon usage and RSCU data frames for the first sequence in their respective lists.
 
 
 # Combine codon usage and RSCU
@@ -769,14 +769,14 @@ combined_data_list <- mapply(function(cu, rscu) {
   merge(cu, rscu, by = "codon", suffixes = c("_usage", "_rscu"))
 }, codon_usage_list, rscu_list, SIMPLIFY = FALSE)
 ```
-This code used to combine codon usage and RSCU data for all sequences by merging the corresponding data frames. The combined data is stored in, facilitating easier analysis and comparison of codon usage and RSCU metrics across different sequences.
+This code is used to combine codon usage and RSCU data for all sequences by merging the corresponding data frames. The combined data is stored in, facilitating easier analysis and comparison of codon usage and RSCU metrics across different sequences.
 
 # Combining all the results
 
 ```{r}
 combined_codon_usage <- do.call(rbind, codon_usage_list)
 ```
-This code used to consolidates all individual codon usage data frames into one comprehensive data frame, combined_codon_usage, facilitating streamlined analysis and handling of the combined codon usage information
+This code is used to consolidate all individual codon usage data frames into one comprehensive data frame, combined_codon_usage, facilitating streamlined analysis and handling of the combined codon usage information
 
 
 # summarise all the codon usage and RSCU for all the sequences
@@ -786,7 +786,7 @@ This code used to consolidates all individual codon usage data frames into one c
 head(combined_data_list[[1]])
 
 ```
-This code used to display the first few rows of the data frame stored in the first element of the sequence. This helps quickly inspect the structure and contents of the dataset.
+This code is used to display the first few rows of the data frame stored in the first element of the sequence. This helps quickly inspect the structure and contents of the dataset.
 
 
 
@@ -803,10 +803,10 @@ This code computes the overall codon usage for every codon in the dataset. It or
 summary_rscu <- aggregate(RSCU_usage ~ codon, data = combined_data_list[[1]], sum)
 
 ```
-This code used to calculate the total Relative Synonymous Codon Usage (RSCU) for each codon in the dataset. It groups the data by the codon column and sums the RSCU_usage values for each codon. The result, stored in the summary_rscu variable, provides a summarized view of RSCU values across the sequences.
+This code is used to calculate the total Relative Synonymous Codon Usage (RSCU) for each codon in the dataset. It groups the data by the codon column and sums the RSCU_usage values for each codon. The result, stored in the summary_rscu variable, provides a summarized view of RSCU values across the sequences.
 
 
-# summary of the above data
+# Summary of the above data
 ```{r}
 print(summary_usage)
 print(summary_rscu)
@@ -814,14 +814,14 @@ print(summary_rscu)
  These codes are used to print the contents of the summary usage and summary rscu data. This allows to review the total codon usage and the summed RSCU values for each codon, providing insights into how frequently each codon is used and its relative usage compared to expected values across the dataset.
 
 
-# visualization of the output of condon usage frequency
+# Visualization of the output of condon usage frequency
 ```{r}
 ggplot(summary_usage, aes(x = codon, y = freq_usage)) +
   geom_bar(stat = "identity", fill = "brown") +
   labs(title = "Total Codon Frequency", x = "Codon", y = "Frequency") +
   theme_minimal()
 ```
-This code used to create a bar plot that visualizes the total frequency of each codon from the summary usage data. And to identify patterns and differences among codons.
+This code is used to create a bar plot that visualizes the total frequency of each codon from the summary usage data. And to identify patterns and differences among codons.
 
 
 # Visualization of the output of RSCU values
@@ -831,7 +831,7 @@ ggplot(summary_rscu, aes(x = codon, y = RSCU_usage)) +
   labs(title = "Total RSCU Values", x = "Codon", y = "RSCU") +
   theme_minimal()
 ```
-This code used to visually represent the output of RSCU values. and to identify which codons are used more or less frequently in comparison to expected usage.
+This code is used to visually represent the output of RSCU values. and to identify which codons are used more or less frequently in comparison to expected usage.
 
 
 
