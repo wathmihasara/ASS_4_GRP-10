@@ -264,9 +264,12 @@ Question 1
 ```{r}
 install.packages("seqinr")
 ```
+This code is used to install the `seqinr` package.
+
 ```{r}
 library(seqinr)
 ```
+This code is used to load the seqinr package to the library.
 The code reads an uncompressed FASTA file named ecoli_cds.fa.gz, which contains coding sequences for Escherichia coli, using the read.fa function from the seqinr  package.
 
 # Downloading the gene e-coli
