@@ -559,14 +559,14 @@ These codes are used to print the results of the comparisons for both the mean a
 
 # Question 4
 
-# bar plot for ecoli
+# Bar plot for ecoli
 
 ```{r}
 install.packages("ggplot2")
 ```
 This code is used to download the ggplot2 
 
-# loading the libraries
+# Loading the libraries
 
 ```{r}
 library(seqinr)
@@ -575,7 +575,7 @@ library(ggplot2)
 ```
 The above code was used to load the installed packages seqinr and ggplot2.
 
-# reading the fasta files
+# Reading the fasta files
 ```{r}
 ecoli_cds <- seqinr::read.fasta("ecoli_cds.fa")
 deinococcus_cds <- seqinr::read.fasta("deinococcus_radiodurans_cds.fa")
@@ -649,7 +649,7 @@ cal_amino_acid_frequency <- function(cds) {
 This code is used to calculate the frequencies of amino acids in the protein sequences translated from a set of coding sequences. This information is valuable for understanding the composition of proteins.
 
 
-# Calculating the aa frequency
+# Calculating the amino acid frequency
 
 ```{r}
 ecoli_aa_freq <- cal_amino_acid_frequency(ecoli_cds)
@@ -689,7 +689,7 @@ deinococcus_aa_freq <- cal_amino_acid_frequency(deinococcus_cds)
 ```
 The code invokes the cal_amino_acid_frequency function for both E. coli and Deinococcus. It processes ecoli_cds, converting the coding sequences into protein sequences and tallying the frequencies of each amino acid, which are then stored in the variable ecoli_aa_freq. Likewise, it uses deinococcus_cds to analyze the amino acid frequencies for Deinococcus, saving the results in deinococcus_aa_freq
 
-# plot for deinococcus
+# plot for Deinococcus
 
 ```{r}
 ggplot(deinococcus_aa_freq, aes(x = Var1, y = Freq)) +
@@ -751,7 +751,7 @@ rscu_list <- lapply(cds, function(seq) {
 ```
 This code is used to calculate the RSCU for all sequences in the cds list and stores the results in rscu_list. And indicates that the results should be returned in a data frame format for easier manipulation.
 
-# check the data frames
+# Check the data frames
 
 ```{r}
 head(codon_usage_list[[1]])
@@ -759,7 +759,7 @@ head(rscu_list[[1]])
 ```
 This code is used to check the first few entries of the codon usage and RSCU data frames for the first sequence in their respective lists. This is useful for validating the calculations and ensuring the data is structured correctly.
 
-# checking the column names 
+# Checking the column names 
 ```{r}
 print(names(codon_usage_list[[1]]))
 print(names(rscu_list[[1]]))
@@ -882,7 +882,7 @@ ecoli_kmer_counts <- as.data.frame(table(kmers_ecoli))
 This code is used to generate and store the frequency of each k-mer, which is crucial for understanding the distribution and occurrence of specific k-mers within the protein sequences of both organisms
 
 
-# renaming the columns of the data frames
+# Renaming the columns of the data frames
 
 ```{r}
 colnames(deinococcus_kmer_counts) <- c("kmer", "freq_deinococcus")
@@ -891,7 +891,7 @@ colnames(ecoli_kmer_counts) <- c("kmer", "freq_ecoli")
 This code is used to rename the columns of the data frame deinococcus_kmer_counts and ecoli_kmer_counts for clarity and ease of use.
 
 
-# display the first few rows for the gene of interest deinococcus
+# display the first few rows for the gene of interest Deinococcus 
 
 ```{r}
 print(head(deinococcus_kmer_counts))
@@ -931,7 +931,7 @@ combined_counts$ratio <- combined_counts$freq_deinococcus / combined_counts$freq
 ```
 This code is used to combine the k-mer frequency counts from both Deinococcus radiodurans and E. coli into a single data frame and calculate the ratio of their frequencies.
 
-# sorting the combined counts
+# Sorting the combined counts
 ```{r}
 sorted_counts <- combined_counts[order(-combined_counts$ratio), ]
 ```
@@ -939,7 +939,7 @@ sorted_counts <- combined_counts[order(-combined_counts$ratio), ]
 This code is used to sort the combined k-mer counts based on the calculated ratio in descending order.
 
 
-# top 10 overrepresented k-mers
+# Top 10 overrepresented k-mers
 ```{r}
 top_overrepresented <- sorted_counts[1:10, ]
 ```
@@ -947,7 +947,7 @@ top_overrepresented <- sorted_counts[1:10, ]
 This code is used to extract the top 10 k-mers that are represented in Deinococcus radiodurans compared to E. coli.
 
 
-# plot for Top 10 Overrepresented k-mers
+# Plot for Top 10 Overrepresented k-mers
 ```{r}
 ggplot(top_overrepresented, aes(x = reorder(kmer, ratio), y = ratio)) +
  geom_bar(stat = "identity", fill = "beige") +
@@ -957,20 +957,20 @@ ggplot(top_overrepresented, aes(x = reorder(kmer, ratio), y = ratio)) +
 ```
 This code used to create a bar plot that visualizes the top 10 epresented k-mers in Deinococcus radiodurans compared to E. coli. And sets the title of the plot and labels for the x and y axes, providing context for what the plot represents.
 
-# sorts the combined counts
+# Sorts the combined counts
 ```{r}
 sorted_underrepresented <- combined_counts[order(combined_counts$ratio), ]
 ```
 This code is used to sort the combined k-mer counts based on the ratio in ascending order. The sorted data frame is assigned to the variable sorted_underrepresented, which now contains the k-mers arranged by their frequency ratios from lowest to highest.
 
-# top 10 underrepresented k-mers
+# Top 10 underrepresented k-mers
 ```{r}
 top_underrepresented <- sorted_underrepresented[1:10, ]
 ```
 This code is used to extract the top 10 k-mers that are underrepresented in Deinococcus radiodurans compared to E. coli. It helps to identify the k-mers that are significantly less prevalent in Deinococcus radiodurans, which can be important for understanding differences in protein composition, function, or evolutionary adaptations between the two organisms.
 
 
-# plot for Top 10 Underrepresented k-mers
+# Plot for Top 10 Underrepresented k-mers
 ```{r}
 ggplot(top_underrepresented, aes(x = reorder(kmer, ratio), y = ratio)) +
   geom_bar(stat = "identity", fill = "red") +
