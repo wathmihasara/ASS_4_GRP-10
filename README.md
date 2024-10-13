@@ -103,7 +103,7 @@ Question 6
 URL="https://raw.githubusercontent.com/ghazkha/Assessment4/refs/heads/main/growth_data.csv"
 download.file(URL, destfile = "gene_expression.csv")
 ```
-All codes are described previously in downloading the gene.
+This code is executed based on previously completed GitHub assessments provided.
 
 # Column Names
 ```{r}
