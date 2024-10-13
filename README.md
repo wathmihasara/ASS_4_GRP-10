@@ -153,6 +153,7 @@ north <- subset(csv_columns,Site==("northeast"),c("Circumf_2005_cm","Circumf_202
 colMeans(north)
 north
 ```
+
 #mean
 ```{r}
 south <- subset(csv_columns,Site==("southwest"),c("Circumf_2005_cm","Circumf_2020_cm"))
@@ -168,7 +169,6 @@ select = c("Circumf_2005_cm", argument Circumf_2020_cm: This argument selects th
 colMeans(): A function that calculates the mean of numeric columns in north data frame.
 This will output a named numeric vector showing the mean circumference for Circumf_2005_cm and Circumf_2020_cm.
 
-
 #Standard deviation
 
 #sd
@@ -176,10 +176,12 @@ This will output a named numeric vector showing the mean circumference for Circu
 sd(south[,1])
 sd(south[,2])
 ```
+
 #sd
 ```{r}
 sd(north[,1])
 sd(north[,2])
+```
 
 sd(): This function computes the standard deviation of values in the column specified.
 south[, 1]: This actually is the notation for accessing the first column of the dataframe south. Let's assume this column contains the measurements of the circumference of trees for one particular year, say 2005.
@@ -191,22 +193,14 @@ south[, 2]: Likewise, the following line will compute the standard deviation of 
 ```{r}
 boxplot(north[,1],north[,2],ylab="tree circumference",names = c("Circumf_2005_cm","Circumf_2020_cm"))
 ```
+
 #box plot
 ```{r}
 boxplot(south[,1],south[,2],ylab="tree circumference",names = c("Circumf_2005_cm","Circumf_2020_cm"))
 ```
 
-boxplot(): This function generates the boxplot.
+boxplot(): This function generates the boxplots for both southwest and northeast data.
 
-
-Northeast
-    Circumf_2010_cm      	Circumf_2015_cm     	Circumf_2020_cm
-11.288                         	24.516                                   	54.228
-
-
-Southwest
-    Circumf_2010_cm      	Circumf_2015_cm     	Circumf_2020_cm
-           10.106          	21.316          	45.596
 
 Question 9 
 
@@ -221,11 +215,16 @@ north2 <- subset(csv_columns,Site==("northeast"))
 north3 <- subset(north2[,3:6])
 colMeans(north3)
 ```
+The first line filters the csv_columns data to include only the rows where the Site is "northeast." This filtered data is saved in a new variable called north2, which contains information specific to the northeast site. The colMeans(north3) line then computes the average values for the selected columns in north3. Ultimately, the calculated averages will be displayed in their respective columns.
+
 ```{r}
 south2 <- subset(csv_columns,Site==("southwest"))
 south3 <- subset(south2[,3:6])
 colMeans(south3)
 ```
+The first line filters the csv_columns data to include only the rows where the Site is "southwest." This filtered data is stored in a new variable called south2, which contains information specific to the southwest site. The second line selects columns 3 to 6 from south2 and saves this subset in south3. Finally, the colMeans(south3) line calculates the average values for the selected columns in south3. The resulting averages will be displayed in their respective columns.
+
+
 ```{r}
 str(csv_columns)
 ```
